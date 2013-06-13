@@ -1,0 +1,7 @@
+    Customer customer = new Customer("{{ request.customer_uri }}");
+    customer.debit( {{ request.payload.amount }},
+                    null,
+                    null,
+                    null,
+                    null,
+                    null);

@@ -10,6 +10,9 @@ import com.balancedpayments.core.ResourceQuery;
 import com.balancedpayments.errors.HTTPError;
 
 public class BankAccount extends Resource {
+	
+    public final String Checking = "checking";
+    public final String Savings = "savings";
 
     @ResourceField()
     public Date created_at;
@@ -46,6 +49,10 @@ public class BankAccount extends Resource {
 
     @ResourceField(required=false)
     public BankAccountVerification verification;
+    
+    @Deprecated
+    @ResourceField(required=false)
+    public Boolean is_valid;
 
     protected static final String root_uri = "/v" + Settings.VERSION + "/bank_accounts";
 
@@ -67,8 +74,8 @@ public class BankAccount extends Resource {
         super(payload);
     }
 
-    public static ResourceQuery<Marketplace> query() {
-        return new ResourceQuery<Marketplace>(Marketplace.class, root_uri);
+    public static ResourceQuery<BankAccount> query() {
+        return new ResourceQuery<BankAccount>(BankAccount.class, root_uri);
     }
 
     @Override
